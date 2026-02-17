@@ -1,0 +1,32 @@
+Description: Import latest Command Line Tools for Xcode in Munki
+Identifier: com.github.pnerum.munki.XcodeCLITools
+MinimumVersion: "2.3"
+ParentRecipe: com.github.mlbz521.pkg.XcodeCLITools
+
+Input:
+  APPLE_ID: ''
+  BETA: ''
+  NOSKIP: ''
+  PASSWORD: ''
+  PASSWORD_FILE: ''
+  PATTERN: ((?!.*beta).*\/Command_Line_Tools_for_Xcode_.*\/Command_Line_Tools_for_Xcode.*.dmg)
+  NAME: Xcode Command Line Tools
+  MUNKI_REPO_SUBDIR: apps/%NAME%
+  CATEGORY:
+  pkginfo:
+    catalogs:
+      - testing
+    category: "%CATEGORY%"
+    description: Installs the Xcode commandline tools
+    developer: "%NAME%"
+    display_name: "%NAME%"
+    name: "%NAME%"
+    unattended_install: true
+    unattended_uninstall: true
+    uninstall_method: removepackages
+
+Process:
+  - Processor: MunkiImporter
+    Arguments:
+      pkg_path: "%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg"
+      repo_subdirectory: "%MUNKI_REPO_SUBDIR%"
