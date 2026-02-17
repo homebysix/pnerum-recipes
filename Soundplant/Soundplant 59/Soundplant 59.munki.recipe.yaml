@@ -1,0 +1,21 @@
+Comment: Created with Recipe Robot v2.5.0 (https://github.com/homebysix/recipe-robot)
+Description: Downloads the latest version of Soundplant 59 and imports it into Munki.
+Identifier: com.github.pnerum.munki.Soundplant59
+Input:
+  MUNKI_REPO_SUBDIR: apps/%NAME%
+  NAME: Soundplant 59
+  pkginfo:
+    catalogs:
+    - testing
+    description: Use your keyboard as an instrument and sample trigger.
+    developer: Marcel Blum
+    display_name: Soundplant 59
+    name: '%NAME%'
+    unattended_install: true
+MinimumVersion: '2.3'
+ParentRecipe: com.github.pnerum.download.Soundplant59
+Process:
+- Arguments:
+    pkg_path: '%pathname%'
+    repo_subdirectory: '%MUNKI_REPO_SUBDIR%'
+  Processor: MunkiImporter
